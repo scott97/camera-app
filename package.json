@@ -1,0 +1,21 @@
+{
+  "name": "camera-app",
+  "version": "0.1.0",
+  "description": "An infra-red triggered wildlife camera app for the raspberry pi.",
+  "main": "app.js",
+  "scripts": {
+    "test": "camera-app"
+  },
+  "keywords": [
+    "camera",
+    "app",
+    "wildlife",
+    "infra-red",
+    "iot"
+  ],
+  "author": "Scott Barnard",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
