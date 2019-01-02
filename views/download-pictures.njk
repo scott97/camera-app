@@ -2,13 +2,5 @@
 {% import "ui.njk" as ui %}
 
 {% block body %}
-{{ ui.tabs(
-[
-    { name: Overview, url: overview, active: false },
-    { name: Download Pictures, url: download-pictures, active: true },
-    { name: Camera Settings, url: camera-settings, active: false },
-    { name: Sensor Settings, url: sensor-settings, active: false },
-    { name: Advanced Settings, url: advanced-settings, active: false },
-]
-) }}
+{{ ui.tabs(pictures=true) }}
 {% endblock %}

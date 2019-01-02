@@ -2,5 +2,5 @@
 {% import "ui.njk" as ui %}
 
 {% block body %}
-{{ ui.tabs([{ name: Overview, url: overview, active: true },{ name: Download Pictures, url: download-pictures, active: false },{ name: Camera Settings, url: camera-settings, active: false },{ name: Sensor Settings, url: sensor-settings, active: false },{ name: Advanced Settings, url: advanced-settings, active: false }]) }}
+{{ ui.tabs(overview=true) }}
 {% endblock %}

@@ -1,31 +1,26 @@
-{% macro tabs(pages) %}
+{% macro tabs(overview=false, pictures=false, camera=false, sensor=false, advanced=false) %}
 
 <div class="tabs">
     <ul>
-        {% for page in pages %}
-        <li {{ 'class="is-active"' if page.active }}>
-            <a href="./{{ page.url }}">{{ page.name }}</a>
-        </li>
-        {% endfor %}
-        {# <li {{ 'class="is-active"' if 'overview'}}>
+        <li {{ 'class="is-active"' if overview}}>
             <a href="./overview">Overview</a>
         </li>
 
-        <li {{ 'class="is-active"' if 'download-pictures'}}>
+        <li {{ 'class="is-active"' if pictures}}>
             <a href="./download-pictures">Download Pictures</a>
         </li>
 
-        <li {{ 'class="is-active"' if 'camera-settings'}}>
+        <li {{ 'class="is-active"' if camera}}>
             <a href="./camera-settings">Camera Settings</a>
         </li>
 
-        <li {{ 'class="is-active"' if 'sensor-settings'}}>
+        <li {{ 'class="is-active"' if sensor}}>
             <a href="./sensor-settings">Sensor Settings</a>
         </li>
 
-        <li {{ 'class="is-active"' if 'advanced-settings'}}>
+        <li {{ 'class="is-active"' if advanced}}>
             <a href="./advanced-settings">Advanced Settings</a>
-        </li>  #}
+        </li> 
     </ul>
 </div>
 
