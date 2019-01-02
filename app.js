@@ -19,8 +19,8 @@ app.get('/', function (req, res) {
 });
 
 // General router
-app.get('/:page', function (req, res) {
-    res.render(':page.njk', {
+app.get('/*', function (req, res) {
+    res.render(':*.njk', {
         title: 'Raspberry Pi',
     });
 });
