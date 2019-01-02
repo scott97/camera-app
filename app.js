@@ -13,7 +13,7 @@ nunjucks.configure('views', {
 });
 
 app.get('/', function (req, res) {
-    res.render('index.njk', {
+    res.render('overview.njk', {
         title: 'Raspberry Pi',
     });
 });
@@ -21,6 +21,7 @@ app.get('/', function (req, res) {
 // General router
 app.get('/:page', function (req, res) {
     res.render(req.params.page + '.njk', {
+        page: req.params.page,
         title: 'Raspberry Pi',
     });
 });

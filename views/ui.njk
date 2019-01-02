@@ -1,9 +1,14 @@
-{% macro tabs(active) %}
+{% macro tabs(pages) %}
 
 <div class="tabs">
     <ul>
-        <li {{ 'class="is-active"' if 'overview'}}>
-            <a href="./">Overview</a>
+        {% for page in pages %}
+        <li {{ 'class="is-active"' if page.active }}>
+            <a href="./{{ page.url }}">{{ page.name }}</a>
+        </li>
+        {% endfor %}
+        {# <li {{ 'class="is-active"' if 'overview'}}>
+            <a href="./overview">Overview</a>
         </li>
 
         <li {{ 'class="is-active"' if 'download-pictures'}}>
@@ -20,7 +25,7 @@
 
         <li {{ 'class="is-active"' if 'advanced-settings'}}>
             <a href="./advanced-settings">Advanced Settings</a>
-        </li> 
+        </li>  #}
     </ul>
 </div>
 
