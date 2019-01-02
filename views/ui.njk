@@ -1,0 +1,28 @@
+{% macro tabs(active) %}
+
+<div class="tabs">
+    <ul>
+        <li {{ 'class="is-active"' if 'overview'}}>
+            <a href="./">Overview</a>
+        </li>
+
+        <li {{ 'class="is-active"' if 'download-pictures'}}>
+            <a href="./download-pictures">Download Pictures</a>
+        </li>
+
+        <li {{ 'class="is-active"' if 'camera-settings'}}>
+            <a href="./camera-settings">Camera Settings</a>
+        </li>
+
+        <li {{ 'class="is-active"' if 'sensor-settings'}}>
+            <a href="./sensor-settings">Sensor Settings</a>
+        </li>
+
+        <li {{ 'class="is-active"' if 'advanced-settings'}}>
+            <a href="./advanced-settings">Advanced Settings</a>
+        </li> 
+    </ul>
+</div>
+
+{% endmacro %}
+
