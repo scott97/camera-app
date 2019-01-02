@@ -18,8 +18,9 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/download-pictures', function (req, res) {
-    res.render('index.njk', {
+// General router
+app.get('/:page', function (req, res) {
+    res.render(':page.njk', {
         title: 'Raspberry Pi',
     });
 });
