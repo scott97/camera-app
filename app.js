@@ -10,7 +10,7 @@ nunjucks.configure('views', {
 
 // app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/', function(req, res) {
-    res.render('index.html', {
+    res.render('index.njk', {
       title : 'My First Nunjucks Page',
       items : [
         { name : 'item #1' },
