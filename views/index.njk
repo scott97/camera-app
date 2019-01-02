@@ -1,0 +1,9 @@
+{% extends "layout.njk" %}
+
+{% block body %}
+<ul>
+    {% for item in items %}
+    <li>{{ item.name }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
