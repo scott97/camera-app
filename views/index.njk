@@ -1,9 +1,12 @@
-{% extends "layout.njk" %}
+{% extends "skeleton.njk" %}
 
 {% block body %}
-<ul>
-    {% for item in items %}
-    <li>{{ item.name }}</li>
-    {% endfor %}
-</ul>
+<div class="tabs">
+  <ul>
+    <li class="is-active"><a>Pictures</a></li>
+    <li><a>Music</a></li>
+    <li><a>Videos</a></li>
+    <li><a>Documents</a></li>
+  </ul>
+</div>
 {% endblock %}

@@ -11,14 +11,8 @@ nunjucks.configure('views', {
 // app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/', function(req, res) {
     res.render('index.njk', {
-      title : 'My First Nunjucks Page',
-      items : [
-        { name : 'item #1' },
-        { name : 'item #2' },
-        { name : 'item #3' },
-        { name : 'item #4' },
-      ]
+      title : 'Raspberry Pi',
     });
   });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Http request to port ${port}.`))
