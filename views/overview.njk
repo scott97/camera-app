@@ -1,11 +1,19 @@
 {% extends "skeleton.njk" %}
 {% import "ui.njk" as ui %}
 
-{% block body %}
+{% block tabs %}
 {{ ui.tabs(overview=true) }}
-<div class="container">
-  <div class="notification is-primary">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur tempora est debitis nam reiciendis. Possimus, nam. Id sint deserunt ex!
-  </div>
-</div>
+{% endblock %}
+
+{% block body %}
+<h1 class="title">Overview</h1>
+
+{{ ui.TextInput('Camera Name') }}
+
+{{ ui.Switch('Capture') }}
+
+{% endblock %}
+
+{% block footer %}
+{{ ui.ApplyResetButtons() }}
 {% endblock %}

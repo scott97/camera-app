@@ -4,11 +4,42 @@
 <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/bulma.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bulma-switch.min.css' />
+    <style>
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    .page {
+        flex: 1;
+    }
+
+    .footer.is-small {
+        padding: 1.5rem 1.5rem;
+    }
+    
+    </style>
 </head>
 
 <body>
-    {% block body %}
-    {% endblock %}
+    {# TABS #}
+    <header>
+        {% block tabs %}{% endblock %}
+    </header>
+
+    {# PAGE #}
+    <section class="section page">
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+    </section>
+
+    {# FOOTER #}
+    {% block footer %}{% endblock %}
+    
+
 </body>
 
 </html>

@@ -1,6 +1,11 @@
 {% extends "skeleton.njk" %}
 {% import "ui.njk" as ui %}
 
-{% block body %}
+{% block tabs %}
 {{ ui.tabs(pictures=true) }}
+{% endblock %}
+
+{% block body %}
+<h1 class="title">Download Pictures</h1>
+
 {% endblock %}

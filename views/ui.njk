@@ -26,3 +26,52 @@
 
 {% endmacro %}
 
+
+{% macro ApplyResetButtons() %}
+<footer class="section footer is-small">
+    <div class="container">
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link">Apply Changes</button>
+            </div>
+            <div class="control">
+                <button class="button is-text">Reset to Default</button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endmacro %}
+
+{# FORM CONTROLS #}
+{% macro TextInput(label) %}
+<div class="field">
+    <label class="label">{{label}}</label>
+    <div class="control">
+        <input class="input" type="text" placeholder="{{label}}">
+    </div>
+</div>
+{% endmacro %}
+
+{% macro SelectInput(label, options) %}
+<div class="field">
+    <label class="label">{{label}}</label>
+    <div class="control">
+        <div class="select">
+            <select>
+                {% for option in options %}
+                <option>{{option}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro Switch(label) %}
+<div class="field">
+    <label class="label">{{label}}</label>
+    <input id="{{label}}" type="checkbox" name="{{label}}" class="switch is-rounded is-info" checked="checked">
+    <label for="{{label}}">On</label>
+</div>
+{% endmacro %}

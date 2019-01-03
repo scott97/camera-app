@@ -16,6 +16,7 @@
   "author": "Scott Barnard",
   "license": "ISC",
   "dependencies": {
+    "bulma-switch": "^2.0.0",
     "express": "^4.16.4",
     "nunjucks": "^3.1.6",
     "path": "^0.12.7"
