@@ -32,7 +32,7 @@
     <div class="container">
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-link">Apply Changes</button>
+                <input type="submit" onclick="document.forms[0].onsubmit();" class="button is-link" value="Apply Changes">
             </div>
             <div class="control">
                 <button class="button is-text">Reset to Default</button>
@@ -44,21 +44,21 @@
 {% endmacro %}
 
 {# FORM CONTROLS #}
-{% macro TextInput(label) %}
+{% macro TextInput(label, name) %}
 <div class="field">
     <label class="label">{{label}}</label>
     <div class="control">
-        <input class="input" type="text" placeholder="{{label}}">
+        <input class="input" type="text" placeholder="{{label}}" name="{{name}}">
     </div>
 </div>
 {% endmacro %}
 
-{% macro SelectInput(label, options) %}
+{% macro SelectInput(label, name, options) %}
 <div class="field">
     <label class="label">{{label}}</label>
     <div class="control">
         <div class="select">
-            <select>
+            <select name="{{name}}">
                 {% for option in options %}
                 <option>{{option}}</option>
                 {% endfor %}

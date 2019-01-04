@@ -1,6 +1,8 @@
 {% extends "skeleton.njk" %}
 {% import "ui.njk" as ui %}
 
+{% block title %}Overview{% endblock %}
+
 {% block tabs %}
 {{ ui.tabs(overview=true) }}
 {% endblock %}
@@ -8,9 +10,10 @@
 {% block body %}
 <h1 class="title">Overview</h1>
 
-{{ ui.TextInput('Camera Name') }}
-
-{{ ui.Switch('Capture') }}
+<form onsubmit="overviewOnClick();">
+    {{ ui.TextInput('Camera Name', 'cameraName') }}
+    {{ ui.Switch('Capture') }}
+</form>
 
 {% endblock %}
 

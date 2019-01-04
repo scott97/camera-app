@@ -1,6 +1,8 @@
 {% extends "skeleton.njk" %}
 {% import "ui.njk" as ui %}
 
+{% block title %}Camera Settings{% endblock %}
+
 {% block tabs %}
 {{ ui.tabs(camera=true) }}
 {% endblock %}
@@ -16,9 +18,9 @@
         <h2 class="subtitle has-text-centered">Preview</h2>
     </div>
 
-    <div class="column is-2">
-        {{ ui.SelectInput('Camera Orientation', ['Normal','Inverted']) }}
-    </div>
+    <form class="column is-2" method="post" action="api/settings">
+        {{ ui.SelectInput('Camera Orientation', 'cameraOrientation', ['Normal','Inverted']) }}
+    </form>
 
 </div>
 {% endblock %}

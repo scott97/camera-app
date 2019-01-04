@@ -1,31 +1,35 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
-const path = require('path');
+const path = require('path')
+const apiRouter = require('./routers/api.js')
+const pagesRouter = require('./routers/pages.js')
+
 const app = express()
 const port = 80
 
+// Misc
+app.listen(port, () => console.log(`Http request to port ${port}.`))
 
-app.use(express.static(path.join(__dirname, 'public')));
-
+// Nunjucks
 nunjucks.configure('views', {
     autoescape: true,
     express: app
-});
-
-app.get('/', function (req, res) {
-    res.render('overview.njk', {
-        title: 'Raspberry Pi',
-    });
-});
-
-// General router
-app.get('/:page', function (req, res) {
-    res.render(req.params.page + '.njk', {
-        page: req.params.page,
-        title: 'Raspberry Pi',
-    });
-});
+})
 
 
+// Routers
+// Static Resources
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.listen(port, () => console.log(`Http request to port ${port}.`))
+// API 
+app.use('/api', apiRouter)
+
+// Web pages
+app.use('/', pagesRouter)
+
+// // 404
+// app.use("*",function(req,res){
+//     res
+//         .status(404)
+//         .render('.njk')
+// })
