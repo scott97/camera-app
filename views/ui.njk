@@ -68,10 +68,10 @@
 </div>
 {% endmacro %}
 
-{% macro Switch(label) %}
+{% macro Switch(label, name) %}
 <div class="field">
     <label class="label">{{label}}</label>
-    <input id="{{label}}" type="checkbox" name="{{label}}" class="switch is-rounded is-info" checked="checked">
-    <label for="{{label}}">On</label>
+    <input id="{{name}}" type="checkbox" name="{{name}}" class="switch is-rounded is-info" checked="checked">
+    <label for="{{name}}">On</label>
 </div>
 {% endmacro %}

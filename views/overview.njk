@@ -1,6 +1,10 @@
 {% extends "skeleton.njk" %}
 {% import "ui.njk" as ui %}
 
+{% block scripts %}
+<script>window.onload = overviewOnLoad();</script>
+{% endblock %}
+
 {% block title %}Overview{% endblock %}
 
 {% block tabs %}
@@ -12,7 +16,7 @@
 
 <form onsubmit="overviewOnClick();">
     {{ ui.TextInput('Camera Name', 'cameraName') }}
-    {{ ui.Switch('Capture') }}
+    {{ ui.Switch('Capture', 'capture') }}
 </form>
 
 {% endblock %}
