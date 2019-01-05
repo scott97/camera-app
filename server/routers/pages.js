@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const debug = require('./debug.js')
+
+var router = express.Router()
 
 function exists(page) {
     var pages = ['overview', 'camera-settings', 'sensor-settings', 'download-pictures', 'advanced-settings']
@@ -14,6 +16,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/:page', function (req, res) {
+    debug.logRequest('/'+req.params.page,'GET')
     if (exists(req.params.page)) {
         res.render(req.params.page + '.njk', {
             page: req.params.page,
@@ -24,4 +27,4 @@ router.get('/:page', function (req, res) {
 })
 
 
-module.exports = router; //export for app.js
+module.exports = router; //export for server.js

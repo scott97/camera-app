@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const multer = require('multer')
 const settings = require('../api/settings.js')
+const debug = require('./debug.js')
 
 var upload = multer()
 var router = express.Router()
@@ -19,14 +20,14 @@ router.use(upload.array());
 router.route('/settings')
     .get(function (req, res) {
         data = settings.load()
-        console.log(`/api/settings (GET): ${JSON.stringify(data)}`)
         res.json(data);
+        debug.logRequest('/api/settings','GET',data)
     })
 
     .post(function (req, res) {
-        console.log(`/api/settings (POST): ${JSON.stringify(req.body)}`)
         settings.update(req.body)
+        debug.logRequest('/api/settings','POST',req.body)
     })
 
 
-module.exports = router; //export for app.js
+module.exports = router; //export for server.js
