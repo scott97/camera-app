@@ -6,20 +6,13 @@ const port = 80
 // Start Server for controlling pi
 server.listen(port, () => console.log(`Server started on port ${port}.`))
 
-// Do camera stuff
-const PiCamera = require('pi-camera');
-const myCamera = new PiCamera({
-  mode: 'photo',
-  output: '~./test.jpg',
-  width: 640,
-  height: 480,
-  nopreview: false,
+
+const RaspiCam = require("raspicam");
+var camera = new RaspiCam({
+    mode: 'photo',
+    output: '~./test.jpg',
 });
- 
-myCamera.snap()
-  .then((result) => {
-    // Your picture was captured
-  })
-  .catch((error) => {
-     // Handle your error
-  });
+
+// Take a snapshot
+camera.start()
+camera.stop()
