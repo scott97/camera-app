@@ -10,7 +10,7 @@ server.listen(port, () => console.log(`Server started on port ${port}.`))
 const RaspiCam = require("raspicam");
 var camera = new RaspiCam({
     mode: 'photo',
-    output: '~./test.jpg',
+    output: 'test.jpg',
 });
 
 // Take a snapshot
