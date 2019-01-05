@@ -1,35 +1,27 @@
-"use strict";
-
+// Server Stuff
 const server = require('./server/server.js')
 const port = 80
 
-// Start Server for controlling pi
+// Start server for controlling pi
 server.listen(port, () => console.log(`Server started on port ${port}.`))
 
 
-// const RaspiCam = require("raspicam");
-// var camera = new RaspiCam({
-//     mode: 'photo',
-//     output: './test.jpg',
-// });
 
-// // Take a snapshot
-// camera.start()
-// camera.stop()
-
+// Camera Stuff
 const PiCamera = require('pi-camera');
-const myCamera = new PiCamera({
-  mode: 'photo',
-  output: `${ __dirname }/test.jpg`,
-  width: 640,
-  height: 480,
-  nopreview: false,
+const camera = new PiCamera({
+    mode: 'photo',
+    output: `${ __dirname }/test.jpg`,
+    width: 640,
+    height: 480,
+    nopreview: false,
+    fullscreen: true,
 });
  
-myCamera.snap()
-  .then((result) => {
-    // Your picture was captured
-  })
-  .catch((error) => {
-     // Handle your error
-  });
+camera.snap()
+    .then((result) => {
+        console.log('picture taken')
+    })
+    .catch((error) => {
+        console.log('camera error')
+    });
