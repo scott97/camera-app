@@ -12,21 +12,20 @@ router.use(bodyParser.urlencoded({
     extended: true
 }))
 
-// Settings
-data = settings.load()
-
 // Response Parsing
 router.use(upload.array()); 
 
 // Camera Settings
 router.route('/settings')
     .get(function (req, res) {
+        data = settings.load()
+        console.log(`/api/settings (GET): ${JSON.stringify(data)}`)
         res.json(data);
     })
 
     .post(function (req, res) {
-        console.log(req.body)
-        settings.update(data, req.body)
+        console.log(`/api/settings (POST): ${JSON.stringify(req.body)}`)
+        settings.update(req.body)
     })
 
 

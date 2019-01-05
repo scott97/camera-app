@@ -2,7 +2,7 @@
 {% import "ui.njk" as ui %}
 
 {% block scripts %}
-<script>window.onload = overviewOnLoad();</script>
+<script src="javascripts/overview.js"></script>
 {% endblock %}
 
 {% block title %}Overview{% endblock %}
@@ -14,7 +14,7 @@
 {% block body %}
 <h1 class="title">Overview</h1>
 
-<form onsubmit="overviewOnClick();">
+<form>
     {{ ui.TextInput('Camera Name', 'cameraName') }}
     {{ ui.Switch('Capture', 'capture') }}
 </form>

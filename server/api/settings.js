@@ -6,12 +6,12 @@ function load() {
 
 
 function save(data) {
-    fs.writeFile('settings.json', JSON.stringify(data), function (err) {
-        if (err) throw err;
-    })
+    fs.writeFile('settings.json', JSON.stringify(data), (err) => { if (err) throw err; })
 }
 
-function update(data, newData) {
+function update(newData) {
+    var data = load();
+    
     for (var attr in newData)
     { 
         data[attr] = newData[attr]; 
