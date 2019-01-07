@@ -1,6 +1,5 @@
 {% macro tabs(overview=false, pictures=false, camera=false, sensor=false, advanced=false) %}
-
-<div class="tabs">
+<div class="tabs is-medium">
     <ul>
         <li {{ "class=is-active" if overview}}>
             <a href="./overview">Overview</a>
@@ -21,6 +20,15 @@
         <li {{ "class=is-active" if advanced}}>
             <a href="./advanced-settings">Advanced Settings</a>
         </li> 
+
+        <li style="flex-grow:1">
+            {# Switch #}
+            <div class="field" style="float:right">
+                Capture&nbsp;
+                <input id="capture" type="checkbox" name="capture" class="switch is-rounded is-info" checked>
+                <label for="capture"></label>
+            </div>
+        </li>
     </ul>
 </div>
 
@@ -73,5 +81,13 @@
     <label class="label">{{label}}</label>
     <input id="{{name}}" type="checkbox" name="{{name}}" class="switch is-rounded is-info" checked="checked">
     <label for="{{name}}">On</label>
+</div>
+{% endmacro %}
+
+{% macro Slider(label, name, min, max, step) %}
+<div class="field">
+    <label class="label">{{label}}</label>
+    <input style="width: calc(100% - (4.7rem))" id="{{name}}" class="slider control is-fullwidth has-output is-small is-circle" name="{{name}}" step="{{step}}" min="{{min}}" max="{{max}}" type="range">
+    <output style="width: 3.5rem" for="{{name}}"></output>
 </div>
 {% endmacro %}

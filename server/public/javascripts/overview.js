@@ -1,7 +1,6 @@
 function ApplySettings() {
     var data = {
-        cameraName: document.querySelector('[name="cameraName"]').value,
-        capture:    document.querySelector('[name="capture"]').checked,
+        cameraName: getFormValue('cameraName'),
     }
 
     postToAPI('api/settings', data)
@@ -9,8 +8,7 @@ function ApplySettings() {
 
 function LoadSettings() {
     getFromAPI('api/settings', function(data) {
-        document.querySelector('[name="cameraName"]').value = data.cameraName;
-        document.querySelector('[name="capture"]').checked = data.capture;
+        setFormValue('cameraName', data.cameraName)
     })
 }
 
