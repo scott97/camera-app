@@ -13,8 +13,10 @@ function LoadPictures() {
         data.forEach(image => {
             var pic = fromString(`
                 <div class="column>
-                    <a href="../images/${image}" class="image is-128x128">
-                        <img src="../images/${image}">
+                    <a href="../images/${image}">
+                        <figure class="image is-128x128">
+                            <img src="../images/${image}">
+                        </figure>
                     </a>
                 </div>
             `)
