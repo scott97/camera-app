@@ -3,7 +3,7 @@ const PiCamera = require('pi-camera')
 const now = require('moment')
 const settings = require('./settings.js')
 const server = require('./server/server.js')
-const sleep = require('sleep-promise')
+var cron = require('node-cron')
 
 // Server Stuff
 const port = 80
@@ -48,15 +48,6 @@ function snap() {
 
 
 // Test code
-snap()
-sleep(5000)
-    .then(snap())
-    .then(sleep(5000))
-    .then(snap())
-    .then(sleep(5000))
-    .then(snap())
-    .then(sleep(5000))
-    .then(snap())
-    .then(sleep(5000))
-    .then(snap())
-    .then(sleep(5000))
+cron.schedule('* * * * *', () => {
+    snap()
+})
