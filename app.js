@@ -14,8 +14,7 @@ server.listen(port, () => console.log(`Server started on port ${port}.`))  // St
 // Camera stuff
 function snap() {
     // Get filename
-    var date = now().format('YYYY-MM-DD HH:mm:ss')
-    console.log(date)
+    var date = now().format('YYYY-MM-DD_HH:mm:ss')
 
     // Configure Camera
     var se = settings.load()
