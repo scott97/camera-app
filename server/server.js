@@ -23,6 +23,9 @@ server.use('/api', apiRouter)
 // Web pages
 server.use('/', pagesRouter)
 
+// Images
+server.use('/images', express.static(path.join(__dirname, '../images')))
+
 
 // Export
 module.exports = server

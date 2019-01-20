@@ -1,8 +1,9 @@
 // Requires
 const PiCamera = require('pi-camera')
-const fs = require('fs')
+const now = require('moment')
 const settings = require('./settings.js')
 const server = require('./server/server.js')
+const sleep = require('sleep-promise')
 
 // Server Stuff
 const port = 80
@@ -10,18 +11,17 @@ server.listen(port, () => console.log(`Server started on port ${port}.`))  // St
 
 
 
-// Camera Setup
-var camera = newPiCamera()  // Initialise Camera
-fs.watchFile('settings.json', (curr,prev) => {camera = newPiCamera()} ) // Keep Camera Updated with latest settings
+// Camera stuff
+function snap() {
+    // Get filename
+    var date = now().format('YYYY-MM-DD HH:mm:ss')
 
-function newPiCamera() {
-    console.log('PiCamera settings updated')
-
+    // Configure Camera
     var se = settings.load()
 
-    return new PiCamera({
+    const camera = new PiCamera({
         mode: 'photo',
-        output: `${ __dirname }/test.jpg`,
+        output: `${ __dirname }/images/${date}.jpg`,
         width: 640,
         height: 480,
         nopreview: false,
@@ -35,14 +35,28 @@ function newPiCamera() {
         ev: se.evCompensation,
     })
 
-}
-
-
-// Camera Logic
-camera.snap()
+    // Take Picture
+    camera.snap()
     .then((result) => {
         console.log('picture taken')
     })
     .catch((error) => {
         console.log('camera error')
     });
+}
+
+
+
+// Test code
+snap()
+sleep(5000)
+    .then(snap())
+    .then(sleep(5000))
+    .then(snap())
+    .then(sleep(5000))
+    .then(snap())
+    .then(sleep(5000))
+    .then(snap())
+    .then(sleep(5000))
+    .then(snap())
+    .then(sleep(5000))
