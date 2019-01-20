@@ -28,7 +28,9 @@ server.use('/', pagesRouter)
 const imagesFolder = path.join(__dirname, '../images');
 server.get('/images-info',(req,res) => {
     fs.readdir(imagesFolder, (err, files) => {
-        res.send(JSON.stringify(files))
+        var json = JSON.stringify(files)
+        console.log(json)
+        res.send(json)
     })
 })
 server.use('/images', express.static(imagesFolder))
