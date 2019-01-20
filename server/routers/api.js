@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const multer = require('multer')
-const settings = require('../api/settings.js')
+const settings = require('../../settings.js')
 const debug = require('./debug.js')
 
 var upload = multer()

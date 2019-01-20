@@ -4,27 +4,21 @@ function load() {
     return JSON.parse(fs.readFileSync('settings.json'));
 }
 
-
-function save(data) {
-    fs.writeFile('settings.json', JSON.stringify(data), (err) => { if (err) throw err; })
-}
-
-function update(newData) {
+function update(received) {
     var data = load();
     
-    for (var attr in newData)
+    for (var attr in received)
     { 
-        data[attr] = newData[attr]; 
+        data[attr] = received[attr]; 
     }
 
-    save(data)
+    fs.writeFile('settings.json', JSON.stringify(data), (err) => { if (err) throw err; })
+
 }
 
 
 module.exports = {
     load: load,
-
-    save: save,
 
     update: update,
 
