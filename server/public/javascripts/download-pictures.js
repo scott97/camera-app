@@ -12,7 +12,7 @@ function LoadPictures() {
 
         data.forEach(image => {
             var pic = fromString(`
-                <div class="tile">
+                <div class="column">
                     <figure class="image is-128x128">
                         <img src="../images/${image}">
                     </figure>
