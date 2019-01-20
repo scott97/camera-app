@@ -26,7 +26,7 @@ server.use('/', pagesRouter)
 
 // Images - note - make this into a seperate router
 const imagesFolder = path.join(__dirname, '../images');
-server.get('/images',(req,res) => {
+server.get('/images-info',(req,res) => {
     fs.readdir(imagesFolder, (err, files) => {
         res.send(JSON.stringify(files))
     })
