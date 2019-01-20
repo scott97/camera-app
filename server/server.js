@@ -27,17 +27,26 @@ server.use('/', pagesRouter)
 // Images - note - make this into a seperate router
 const imagesFolder = path.join(__dirname, '../images');
 server.get('/image-list', function(req,res) { // Not working
-    fs.readdir(imagesFolder, (err, files) => {
-        var txt = ''
-        files.forEach(file => {
-            console.log(file)
-            txt += file + '<br>\n'
-        })
-        res.send(txt)
+    getImages(imagesFolder, (err,files) => {
+        console.log(files)
+        res.send('Files:<br>'+ JSON.stringify(files))
     })
-    res.send('oops')
 })
 server.use('/images', express.static(imagesFolder))
+
+
+function getImages(directory, callback) {
+    var extname = '.jpg',
+        files = [], i;
+    fs.readdir(directory, function (err, list) {
+        for(i=0; i<list.length; i++) {
+            if(path.extname(list[i]) === extname) {
+                files.push(list[i]); //store the file name into the array files
+            }
+        }
+        callback(err, files);
+    });
+}
 
 
 // Export
