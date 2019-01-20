@@ -12,8 +12,8 @@ function LoadPictures() {
 
         data.forEach(image => {
             var pic = fromString(`
-                <div class="column">
-                    <figure class="image is-128x128 is-1">
+                <div class="column is-1>
+                    <figure class="image is-128x128">
                         <img src="../images/${image}">
                     </figure>
                 </div>
