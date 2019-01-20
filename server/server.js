@@ -21,9 +21,6 @@ server.use(express.static(path.join(__dirname, './public')))
 // API 
 server.use('/api', apiRouter)
 
-// Web pages
-server.use('/', pagesRouter)
-
 // Images - note - make this into a seperate router
 const imagesFolder = path.join(__dirname, '../images');
 server.get('/image-list', function(req,res) { // Not working
@@ -47,6 +44,11 @@ function getImages(directory, callback) {
         callback(err, files);
     });
 }
+
+
+// Web pages
+server.use('/', pagesRouter)
+
 
 
 // Export
