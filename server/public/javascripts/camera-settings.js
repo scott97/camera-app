@@ -11,7 +11,7 @@ function ApplySettings() {
 
     postToAPI('api/settings', data)
 }
-'asdf'.valueOf
+
 function LoadSettings() {
     getFromAPI('api/settings', function(data) {
         setFormValue('cameraOrientation', data.cameraOrientation)

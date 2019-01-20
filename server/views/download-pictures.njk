@@ -1,6 +1,10 @@
 {% extends "skeleton.njk" %}
 {% import "ui.njk" as ui %}
 
+{% block scripts %}
+<script src="javascripts/download-pictures.js"></script>
+{% endblock %}
+
 {% block title %}Download Pictures{% endblock %}
 
 {% block tabs %}
@@ -9,5 +13,9 @@
 
 {% block body %}
 <h1 class="title">Download Pictures</h1>
+<div id="grid" class="tile is-ancestor">
+  
+  
+</div>
 
 {% endblock %}

@@ -15,9 +15,6 @@ router.use(bodyParser.urlencoded({
 
 router.get('/list-all', function(req,res) {
     fs.readdir(directory, (err,files) => {
-        files.forEach((file) => {
-            file = '/images/' + file
-        })
         res.json(files)
         debug.logRequest('/images/list','GET',files)
     })
