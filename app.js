@@ -12,13 +12,6 @@ const board = new gpio.Board({io: new Raspi()})
 const port = 80
 server.listen(port, () => console.log(`Server started on port ${port}.`))  // Start server
 
-// Keep Settings Up to Date
-var se = settings.load()
-settings.onupdate = () => {
-    se = settings.load()
-}
-
-
 // Electronics
 board.on('ready', () => {
     var lights = new gpio.Pin(0) // GPIO 17 or wiring pi 0
@@ -28,31 +21,26 @@ board.on('ready', () => {
         mode: gpio.Pin.INPUT,
     })
 
-
     pir.on('high', function() {
         console.log( 'Motion detected' )
+        var se = settings.load()
+
         if (se.capture) {
-            snap()
+            snap(se)
         }
         else {
             console.log('Camera disabled')
         }
-
-        
     })
 })
 
 
-
-
 // Camera stuff
-function snap() {
+function snap(se) {
     // Get filename
     var date = now().format('YYYY-MM-DD_HH:mm:ss')
 
     // Configure Camera
-    var se = settings.load()
-
     const camera = new PiCamera({
         mode: 'photo',
         output: `${ __dirname }/images/${date}.jpg`,

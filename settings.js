@@ -16,15 +16,13 @@ function update(received) {
 }
 
 
-fs.watch('settings.json', (eventType, filename) => {
-    if (eventType === 'change') {
-        onupdate();
-    }
-})
+// fs.watch('settings.json', (eventType, filename) => {
+//     if (eventType === 'change') {
+//         onupdate();
+//     }
+// })
 
-function onupdate() {
-    console.log('Settings updated')
-}
+// function onupdate() {}
 
 
 
@@ -33,11 +31,5 @@ module.exports = {
 
     update: update,
 
-    onupdate: onupdate,
-
-    defaults: {
-        cameraName: 'Wildlife Camera',
-        cameraOrientation: 'Normal',
-        capture: true
-    },
+    //onupdate: onupdate,
 }
