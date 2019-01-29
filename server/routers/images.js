@@ -21,7 +21,7 @@ router.get('/list-all', function(req,res) {
     })
 })
 router.get('/download-all', (req,res) => {
-    res.download() // todo
+    res.download() // todo - needs fixing
     debug.logRequest('/images/download-all','GET')
 })
 router.get('/delete-all', (req,res) => {

@@ -17,6 +17,14 @@ router.use(bodyParser.urlencoded({
 router.use(upload.array()); 
 
 // Camera Settings
+router.route('/settings/reset')
+    .get( () => {
+        res.redirect('/')
+        debug.logRequest('/api/settings/reset','GET',data)
+        // Todo - reset settings
+        settings.reset()
+    })
+
 router.route('/settings')
     .get(function (req, res) {
         data = settings.load()
@@ -28,6 +36,8 @@ router.route('/settings')
         settings.update(req.body)
         debug.logRequest('/api/settings','POST',req.body)
     })
+
+
 
 
 module.exports = router; //export for server.js
