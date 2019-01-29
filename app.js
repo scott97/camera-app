@@ -31,10 +31,10 @@ board.on('ready', () => {
     })    
 
     pir.on('high', function() {
-        console.log( 'Motion detected' )
         var se = settings.load()
 
         if (se.capture) {
+            console.log( 'Motion detected' )
             snap(se, flash)
         }
     })
