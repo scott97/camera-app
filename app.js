@@ -14,29 +14,36 @@ server.listen(port, () => console.log(`Server started on port ${port}.`))  // St
 
 // Electronics
 board.on('ready', () => {
-    var lights = new gpio.Pin(0) // GPIO 17 or wiring pi 0
-    var pir = new gpio.Pin({ // GPIO 4 or wiring pi 7
+
+    // GPIO 17 or wiring pi 0
+    var flash = new gpio.Pin({
+        pin: 0,
+        type: 'digital',
+        mode: gpio.Pin.OUTPUT,
+    })
+
+    flash.low()
+
+    // GPIO 4 or wiring pi 7
+    var pir = new gpio.Pin({ 
         pin: 7,
         type: 'digital',
         mode: gpio.Pin.INPUT,
-    })
+    })    
 
     pir.on('high', function() {
         console.log( 'Motion detected' )
         var se = settings.load()
 
         if (se.capture) {
-            snap(se)
-        }
-        else {
-            console.log('Camera disabled')
+            snap(se, flash)
         }
     })
 })
 
 
 // Camera stuff
-function snap(se) {
+function snap(se, flash) {
     // Get filename
     var date = now().format('YYYY-MM-DD_HH:mm:ss')
 
@@ -58,12 +65,15 @@ function snap(se) {
     })
 
     // Take Picture
+    flash.high()
     camera.snap()
         .then((result) => {
             console.log('Picture taken')
+            flash.low()
         })
         .catch((error) => {
             console.log('Pamera error')
+            flash.low()
         })
 }
 
