@@ -1,8 +1,9 @@
 // Requires
+const root = '/home/pi/Camera-App'
 const PiCamera = require('pi-camera')
 const now = require('moment')
-const server = require('./server/server.js')
-var settings = require('./settings.js')
+const server = require(root + '/server/server.js')
+const settings = require(root + '/settings.js')
 
 const Raspi = require('raspi-io');
 const gpio = require('johnny-five');
