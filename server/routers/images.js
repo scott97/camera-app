@@ -28,7 +28,7 @@ router.get('/delete-all', (req,res) => {
     fs.readdir(directory, (err,files) => {
         if (err) throw err
         files.forEach(file => {
-            fs.unlink(file, () => {if (err) throw err} )
+            fs.unlink(path.join(directory,file), () => {if (err) throw err} )
         })
     })
     debug.logRequest('/images/delete-all','GET')
