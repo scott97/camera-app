@@ -18,10 +18,9 @@ router.use(upload.array());
 
 // Camera Settings
 router.route('/settings/reset')
-    .get( () => {
+    .get((req,res) => {
         res.redirect('/')
         debug.logRequest('/api/settings/reset','GET',data)
-        // Todo - reset settings
         settings.reset()
     })
 
