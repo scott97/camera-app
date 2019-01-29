@@ -23,7 +23,7 @@ fs.watch('settings.json', (eventType, filename) => {
 })
 
 function onupdate() {
-    alert('settings updated')
+    console.log('Settings updated')
 }
 
 
