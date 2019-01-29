@@ -20,12 +20,15 @@ router.get('/list-all', function(req,res) {
     })
 })
 router.get('/download-all', (req,res) => {
-    res.download()
+    res.download() // todo
     debug.logRequest('/images/download-all','GET')
 })
 router.get('/delete-all', (req,res) => {
-    fs.rmdir(directory, (err) => { if (err) throw err })
-    fs.mkdir(directory, (err) => { if (err) throw err })
+    fs.readdir(directory, (err,files) => {
+        files.forEach(file => {
+            fs.unlink(file)
+        })
+    })
     debug.logRequest('/images/delete-all','GET')
     res.redirect('/download-pictures')
 })
