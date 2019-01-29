@@ -16,13 +16,12 @@ server.listen(port, () => console.log(`Server started on port ${port}.`))  // St
 board.on('ready', () => {
 
     // GPIO 17 or wiring pi 0
-    var flash = new gpio.Pin({
+    var flash = new gpio.Relay({
         pin: 0,
-        type: 'digital',
-        mode: gpio.Pin.OUTPUT,
+        type: 'NC', // Normally open
     })
 
-    flash.low()
+    flash.open()
 
     // GPIO 4 or wiring pi 7
     var pir = new gpio.Pin({ 
@@ -65,15 +64,15 @@ function snap(se, flash) {
     })
 
     // Take Picture
-    flash.high()
+    flash.close()
     camera.snap()
         .then((result) => {
             console.log('Picture taken')
-            flash.low()
+            flash.open()
         })
         .catch((error) => {
             console.log('Pamera error')
-            flash.low()
+            flash.open()
         })
 }
 
