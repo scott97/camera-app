@@ -23,7 +23,7 @@ router.get('/list-all', function(req,res) {
 })
 router.get('/download-all', (req,res) => {
     debug.logRequest('/images/download-all','GET')
-    const zipfile = directory + '/images.zip'
+    const zipfile = directory + '../images.zip'
     zipImages(directory, zipfile, () => {
         res.download(zipfile)
     })
@@ -55,7 +55,6 @@ function zipImages(source, target, callback) {
 
     archive.pipe(stream)
     archive.glob(source + '/*.jpg')
-    //archive.directory(source + '/', false);
     archive.finalize()
 }
 
