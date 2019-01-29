@@ -15,6 +15,7 @@ router.use(bodyParser.urlencoded({
 
 router.get('/list-all', function(req,res) {
     fs.readdir(directory, (err,files) => {
+        if (err) throw err
         res.json(files)
         debug.logRequest('/images/list-all','GET',files)
     })
@@ -25,8 +26,9 @@ router.get('/download-all', (req,res) => {
 })
 router.get('/delete-all', (req,res) => {
     fs.readdir(directory, (err,files) => {
+        if (err) throw err
         files.forEach(file => {
-            fs.unlink(file)
+            fs.unlink(file, () => {if (err) throw err} )
         })
     })
     debug.logRequest('/images/delete-all','GET')
