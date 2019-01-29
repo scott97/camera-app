@@ -1,10 +1,11 @@
+const root = '/home/pi/Camera-App'
 const express = require('express')
 const bodyParser = require('body-parser')
-const debug = require('./debug.js')
+const debug = require(root + '/server/debug.js')
 const path = require('path')
 const fs = require('fs')
 const archiver = require('archiver')
-const directory = path.join(__dirname, '../../images')
+const directory = root + '/images'
 
 var router = express.Router()
 
@@ -15,7 +16,7 @@ router.use(bodyParser.urlencoded({
 }))
 
 router.get('/list-all', function(req,res) {
-    fs.readdir(directory, (err,files) => {
+    fs.readdir(root + '/images', (err,files) => {
         if (err) throw err
         res.json(files)
         debug.logRequest('/images/list-all','GET',files)
@@ -23,16 +24,16 @@ router.get('/list-all', function(req,res) {
 })
 router.get('/download-all', (req,res) => {
     debug.logRequest('/images/download-all','GET')
-    const zipfile = directory + '../images.zip'
-    zipImages(directory, zipfile, () => {
+    const zipfile = root + '/images.zip'
+    zipImages(root + '/images', zipfile, () => {
         res.download(zipfile)
     })
 })
 router.get('/delete-all', (req,res) => {
-    fs.readdir(directory, (err,files) => {
+    fs.readdir(root + '/images', (err,files) => {
         if (err) throw err
         files.forEach(file => {
-            fs.unlink(path.join(directory,file), () => {if (err) throw err} )
+            fs.unlink(root + '/images/' + file, () => {if (err) throw err} )
         })
     })
     debug.logRequest('/images/delete-all','GET')
@@ -54,7 +55,8 @@ function zipImages(source, target, callback) {
     })
 
     archive.pipe(stream)
-    archive.glob(source + '/*.jpg')
+    archive.directory(root + '/images',false)
+    //archive.glob(source + '/*.jpg')
     archive.finalize()
 }
 

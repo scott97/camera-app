@@ -1,8 +1,9 @@
+const root = '/home/pi/Camera-App'
 const express = require('express')
 const bodyParser = require('body-parser')
 const multer = require('multer')
-const settings = require('../../settings.js')
-const debug = require('./debug.js')
+const settings = require(root + '/settings.js')
+const debug = require(root + '/server/debug.js')
 
 var upload = multer()
 var router = express.Router()

@@ -1,5 +1,6 @@
+const root = '/home/pi/Camera-App'
 const express = require('express')
-const debug = require('./debug.js')
+const debug = require(root + '/server/debug.js')
 
 var router = express.Router()
 
