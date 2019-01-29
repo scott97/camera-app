@@ -22,10 +22,11 @@ router.get('/list-all', function(req,res) {
     })
 })
 router.get('/download-all', (req,res) => {
-    const zipfile = directory + '/images.zip'
-    zipImages(directory, zipfile)
-    res.download(zipfile)
     debug.logRequest('/images/download-all','GET')
+    const zipfile = directory + '/images.zip'
+    zipImages(directory, zipfile, () => {
+        res.download(zipfile)
+    })
 })
 router.get('/delete-all', (req,res) => {
     fs.readdir(directory, (err,files) => {
@@ -39,12 +40,13 @@ router.get('/delete-all', (req,res) => {
 })
 router.use('/', express.static(directory))
 
-function zipImages(source, target) {
+function zipImages(source, target, callback) {
     var stream = fs.createWriteStream(target)
     var archive = archiver('zip');
 
     stream.on('close', () => {
         console.log('Zip file created (' + archive.pointer() + ' bytes)')
+        callback()
     })
 
     archive.on('error', (err) => {
