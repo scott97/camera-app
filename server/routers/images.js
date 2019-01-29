@@ -22,7 +22,7 @@ router.get('/list-all', function(req,res) {
     })
 })
 router.get('/download-all', (req,res) => {
-    const zipfile = directory + 'images.zip'
+    const zipfile = directory + '/images.zip'
     zipImages(directory, zipfile)
     res.download(zipfile)
     debug.logRequest('/images/download-all','GET')
