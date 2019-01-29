@@ -21,7 +21,10 @@ router.get('/list-all', function(req,res) {
     })
 })
 router.get('/download-all', (req,res) => {
-    res.download() // todo - needs fixing
+    var data = zipImages()
+    var zipfile = path.join(directory,'images.zip')
+    fs.writeFileSync(zipfile, data, 'binary');
+    res.download(zipfile)
     debug.logRequest('/images/download-all','GET')
 })
 router.get('/delete-all', (req,res) => {
@@ -35,6 +38,24 @@ router.get('/delete-all', (req,res) => {
     res.redirect('/download-pictures')
 })
 router.use('/', express.static(directory))
+
+
+function zipImages() {
+    var zip = new require('node-zip')()
+
+    fs.readdir(directory, (err,files) => {
+        if (err) throw err
+        files.forEach(file => {
+            zip.file(file, fs.readFileSync(path.join(directory,file)))
+        })
+
+    })
+
+    var data = zip.generate({ base64:false, compression: 'DEFLATE' })
+
+    return data
+}
+
 
 
 module.exports = router; //export for server.js
