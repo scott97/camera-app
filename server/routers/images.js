@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const debug = require('./debug.js')
 const path = require('path')
 const fs = require('fs')
+const nodeZip = require('node-zip')
 const directory = path.join(__dirname, '../../images')
 
 var router = express.Router()
@@ -21,9 +22,7 @@ router.get('/list-all', function(req,res) {
     })
 })
 router.get('/download-all', (req,res) => {
-    var data = zipImages()
-    var zipfile = path.join(directory,'images.zip')
-    fs.writeFileSync(zipfile, data, 'binary');
+    var zipfile = zipImages()
     res.download(zipfile)
     debug.logRequest('/images/download-all','GET')
 })
@@ -41,19 +40,20 @@ router.use('/', express.static(directory))
 
 
 function zipImages() {
-    var zip = new require('node-zip')()
+    var zip = new nodeZip()
 
     fs.readdir(directory, (err,files) => {
         if (err) throw err
         files.forEach(file => {
             zip.file(file, fs.readFileSync(path.join(directory,file)))
         })
-
     })
 
     var data = zip.generate({ base64:false, compression: 'DEFLATE' })
+    var zipfile = path.join(directory,'images.zip')
+    fs.writeFileSync(zipfile, data, 'binary');
 
-    return data
+    return zipfile
 }
 
 
