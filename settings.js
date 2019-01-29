@@ -16,20 +16,9 @@ function update(received) {
 }
 
 
-// fs.watch('settings.json', (eventType, filename) => {
-//     if (eventType === 'change') {
-//         onupdate();
-//     }
-// })
-
-// function onupdate() {}
-
-
-
 module.exports = {
     load: load,
 
     update: update,
 
-    //onupdate: onupdate,
 }
