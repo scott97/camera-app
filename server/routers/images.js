@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const debug = require('./debug.js')
 const path = require('path')
 const fs = require('fs')
-const nodeZip = require('node-zip')
+const archiver = require('archiver')
 const directory = path.join(__dirname, '../../images')
 
 var router = express.Router()
@@ -22,7 +22,8 @@ router.get('/list-all', function(req,res) {
     })
 })
 router.get('/download-all', (req,res) => {
-    var zipfile = zipImages()
+    const zipfile = directory + 'images.zip'
+    zipImages(directory, zipfile)
     res.download(zipfile)
     debug.logRequest('/images/download-all','GET')
 })
@@ -38,22 +39,21 @@ router.get('/delete-all', (req,res) => {
 })
 router.use('/', express.static(directory))
 
+function zipImages(source, target) {
+    var stream = fs.createWriteStream(target)
+    var archive = archiver('zip');
 
-function zipImages() {
-    var zip = new nodeZip()
-
-    fs.readdir(directory, (err,files) => {
-        if (err) throw err
-        files.forEach(file => {
-            zip.file(file, fs.readFileSync(path.join(directory,file)))
-        })
+    stream.on('close', () => {
+        console.log('Zip file created (' + archive.pointer() + ' bytes)')
     })
 
-    var data = zip.generate({ base64:false, compression: 'DEFLATE' })
-    var zipfile = path.join(directory,'images.zip')
-    fs.writeFileSync(zipfile, data, 'binary');
+    archive.on('error', (err) => {
+        throw err
+    })
 
-    return zipfile
+    archive.pipe(stream)
+    archive.glob(source + '/*.jpg')
+    archive.finalize()
 }
 
 

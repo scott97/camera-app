@@ -16,6 +16,7 @@
   "author": "Scott Barnard",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^3.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "johnny-five": "^1.0.0",
