@@ -13,14 +13,27 @@ function update(received) {
     }
 
     fs.writeFile('settings.json', JSON.stringify(data), (err) => { if (err) throw err; })
-
 }
+
+
+fs.watch('settings.json', (eventType, filename) => {
+    if (eventType === 'change') {
+        onupdate();
+    }
+})
+
+function onupdate() {
+    alert('settings updated')
+}
+
 
 
 module.exports = {
     load: load,
 
     update: update,
+
+    onupdate: onupdate,
 
     defaults: {
         cameraName: 'Wildlife Camera',

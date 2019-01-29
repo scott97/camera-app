@@ -1,13 +1,40 @@
 // Requires
 const PiCamera = require('pi-camera')
 const now = require('moment')
-const settings = require('./settings.js')
 const server = require('./server/server.js')
-var cron = require('node-cron')
+var settings = require('./settings.js')
+
+const Raspi = require('raspi-io');
+const gpio = require('johnny-five');
+const board = new gpio.Board({io: new Raspi()})
 
 // Server Stuff
 const port = 80
 server.listen(port, () => console.log(`Server started on port ${port}.`))  // Start server
+
+// Keep Settings Up to Date
+settings.onupdate = () => {
+    var se = settings.load()
+}
+
+
+// Electronics
+board.on('ready', () => {
+    var lights = new gpio.Pin(17)
+    var pir = new gpio.Pin(4, gpio.Pin.INPUT)
+    var pir = new gpio.Pin({
+        pin: 4,
+        type: 'digital',
+        mode: gpio.Pin.INPUT,
+    })
+
+
+    pir.on('high', function() {
+        console.log( 'Motion detected' );
+        snap()
+    })
+})
+
 
 
 
@@ -45,9 +72,3 @@ function snap() {
         })
 }
 
-
-
-// Test code
-cron.schedule('* * * * *', () => {
-    snap()
-})
