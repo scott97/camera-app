@@ -20,10 +20,9 @@ settings.onupdate = () => {
 
 // Electronics
 board.on('ready', () => {
-    var lights = new gpio.Pin(17)
-    var pir = new gpio.Pin(4, gpio.Pin.INPUT)
-    var pir = new gpio.Pin({
-        pin: 4,
+    var lights = new gpio.Pin(0) // GPIO 17 or wiring pi 0
+    var pir = new gpio.Pin({ // GPIO 4 or wiring pi 7
+        pin: 7,
         type: 'digital',
         mode: gpio.Pin.INPUT,
     })
