@@ -22,11 +22,8 @@
     "johnny-five": "^1.0.0",
     "moment": "^2.23.0",
     "multer": "^1.4.1",
-    "node-cron": "^2.0.3",
-    "node-zip": "^1.1.1",
     "nunjucks": "^3.1.6",
     "path": "^0.12.7",
-    "pi-camera": "^1.2.1",
-    "sleep-promise": "^8.0.1"
+    "pi-camera": "^1.2.1"
   }
 }
