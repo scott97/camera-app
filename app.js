@@ -13,8 +13,9 @@ const port = 80
 server.listen(port, () => console.log(`Server started on port ${port}.`))  // Start server
 
 // Keep Settings Up to Date
+var se = settings.load()
 settings.onupdate = () => {
-    var se = settings.load()
+    se = settings.load()
 }
 
 
@@ -29,8 +30,15 @@ board.on('ready', () => {
 
 
     pir.on('high', function() {
-        console.log( 'Motion detected' );
-        snap()
+        console.log( 'Motion detected' )
+        if (se.capture) {
+            snap()
+        }
+        else {
+            console.log('Camera disabled')
+        }
+
+        
     })
 })
 
@@ -64,10 +72,10 @@ function snap() {
     // Take Picture
     camera.snap()
         .then((result) => {
-            console.log('picture taken')
+            console.log('Picture taken')
         })
         .catch((error) => {
-            console.log('camera error')
+            console.log('Pamera error')
         })
 }
 
