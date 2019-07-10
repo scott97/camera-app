@@ -6,7 +6,8 @@ const apiRouter = require(root + '/server/routers/api.js')
 const pagesRouter = require(root + '/server/routers/pages.js')
 const imagesRouter = require(root + '/server/routers/images.js')
 
-const server = express()
+// Exports
+export let server = express()
 
 // Nunjucks
 nunjucks.configure('server/views', {
@@ -28,9 +29,3 @@ server.use('/images',imagesRouter)
 
 // Web pages
 server.use('/', pagesRouter)
-
-
-
-// Export
-module.exports = server
-
