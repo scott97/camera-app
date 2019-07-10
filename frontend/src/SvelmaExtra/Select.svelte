@@ -1,12 +1,16 @@
-<!--
-    <label class="label">{{label}}</label>
-    <div class="control">
-        <div class="select">
-            <select name="{{name}}">
-                {% for option in options %}
-                <option>{{option}}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-    -->
+<script>
+    export let options;
+    export let value;
+</script>
+
+
+
+<div class="control">
+  <div class="select">
+    <select bind:value={value}>
+      {#each options as option}
+        <option>{option}</option>
+      {/each}
+    </select>
+  </div>
+</div>
