@@ -3,8 +3,8 @@
   import Slider from "../SvelmaExtra/Slider.svelte";
   import Select from "../SvelmaExtra/Select.svelte";
 
-  // camera
-  export let camera = {
+  // Camera Settings
+  export let cameraSettings = {
     // Sliders
     sharpness: 0,
     contrast: 0,
@@ -17,7 +17,7 @@
     orientation: "Normal",
     exposureMode: "Auto",
     awb: "Off",
-    metering: "Average"
+    metering: "Average",
   };
 </script>
 
@@ -26,23 +26,23 @@
 <div class="columns">
   <div class="column">
     <Field label="Sharpness">
-      <Slider step="10" min="-100" max="100" bind:value={camera.sharpness} />
+      <Slider step="10" min="-100" max="100" bind:value={cameraSettings.sharpness} />
     </Field>
 
     <Field label="Contrast">
-      <Slider step="10" min="-100" max="100" bind:value={camera.contrast} />
+      <Slider step="10" min="-100" max="100" bind:value={cameraSettings.contrast} />
     </Field>
 
     <Field label="Brightness">
-      <Slider step="5" min="0" max="100" bind:value={camera.brightness} />
+      <Slider step="5" min="0" max="100" bind:value={cameraSettings.brightness} />
     </Field>
 
     <Field label="Saturation">
-      <Slider step="10" min="-100" max="100" bind:value={camera.saturation} />
+      <Slider step="10" min="-100" max="100" bind:value={cameraSettings.saturation} />
     </Field>
 
     <Field label="ISO">
-      <Slider step="50" min="100" max="800" bind:value={camera.iso} />
+      <Slider step="50" min="100" max="800" bind:value={cameraSettings.iso} />
     </Field>
 
     <Field label="EV Compensation">
@@ -50,32 +50,32 @@
         step="1"
         min="-10"
         max="10"
-        bind:value={camera.evcompensation} />
+        bind:value={cameraSettings.evcompensation} />
     </Field>
 
   </div>
   <div class="column">
     <Field label="Camera Orientation">
       <Select
-        bind:value={camera.orientation}
+        bind:value={cameraSettings.orientation}
         options={['Normal', 'Inverted']} />
     </Field>
 
     <Field label="Exposure Mode">
       <Select
-        bind:value={camera.exposureMode}
+        bind:value={cameraSettings.exposureMode}
         options={['Auto', 'Night', 'Night Preview', 'Backlight', 'Spotlight', 'Sports', 'Snow', 'Beach', 'Very Long', 'Fixed FPS', 'Anti-shake', 'Fireworks']} />
     </Field>
 
     <Field label="AWB (Auto White Balance)">
       <Select
-        bind:value={camera.awb}
+        bind:value={cameraSettings.awb}
         options={['Off', 'Auto', 'Sun', 'Cloud', 'Shade', 'Tungsten', 'Fluorescent', 'Incandescent', 'Flash', 'Horizon']} />
     </Field>
 
     <Field label="Metering">
       <Select
-        bind:value={camera.metering}
+        bind:value={cameraSettings.metering}
         options={['Average', 'Spot', 'Backlit', 'Matrix']} />
     </Field>
   </div>

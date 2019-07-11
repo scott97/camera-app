@@ -72,7 +72,7 @@ function snap(se, flash) {
             flash.open()
         })
         .catch((error) => {
-            console.log('Pamera error')
+            console.log('Camera error')
             flash.open()
         })
 }
