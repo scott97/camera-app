@@ -39,13 +39,16 @@
     .section {
         padding: 1.5rem 1.5rem;
     }
+    #loading {
+        text-align: center;
+    }
 </style>
 
 
 <div class="section">
     <div class="container">
     {#await FetchSettings }
-        <Progress max="100" type="is-info"></Progress>
+        <p id="loading">Loading...</p>
         {:then Settings}
         <TitleBar title={Settings.cameraName} bind:capture={Settings.capture}/>
         <Tabs>
