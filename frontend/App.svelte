@@ -12,7 +12,7 @@ import TitleBar from './Fragments/TitleBar.svelte'
 import DownloadPictures from './Fragments/DownloadPictures.svelte'
 
     // Data
-    let Settings;
+    //let Settings;
     //  = {
     //     capture: undefined,
     //     cameraName: undefined,
@@ -34,24 +34,24 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
     // };
 
     // Load Settings
-    (async ()=>{
+    async function fetchSettings() {
         let response = await fetch('api/settings');
-        Settings = await response.json();
-    })();
+        return await response.json();
+    }
 
 
     // Update
-    $: {
-        console.log(Settings);
-        fetch('api/settings', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Settings)
-        });
-    }
+    // $: {
+    //     console.log(Settings);
+    //     fetch('api/settings', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(Settings)
+    //     });
+    // }
 </script>
 
 <style>
@@ -60,6 +60,8 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
     }
 </style>
 
+{#await fetchSettings() then Settings}
+	
 <div class="section">
     <div class="container">
         <TitleBar title={Settings.cameraName} bind:capture={Settings.capture}/>
@@ -91,3 +93,4 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
         </Tabs>
     </div>
 </div>
+{/await}
