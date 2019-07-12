@@ -34,6 +34,8 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
     // };
 
     // Load Settings
+    let PromiseSettings = fetchSettings();
+
     async function fetchSettings() {
         let response = await fetch('api/settings');
         return await response.json();
@@ -60,7 +62,7 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
     }
 </style>
 
-{#await fetchSettings() then Settings}
+{#await PromiseSettings then Settings}
 	
 <div class="section">
     <div class="container">
