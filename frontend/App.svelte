@@ -12,25 +12,26 @@ import TitleBar from './Fragments/TitleBar.svelte'
 import DownloadPictures from './Fragments/DownloadPictures.svelte'
 
     // Data
-    let Settings = {
-        capture: undefined,
-        cameraName: undefined,
+    let Settings;
+    //  = {
+    //     capture: undefined,
+    //     cameraName: undefined,
 
-        // Sliders
-        sharpness: undefined,
-        sharpness: undefined,
-        contrast: undefined,
-        brightness: undefined,
-        saturation: undefined,
-        iso: undefined,
-        evCompensation: undefined,
+    //     // Sliders
+    //     sharpness: undefined,
+    //     sharpness: undefined,
+    //     contrast: undefined,
+    //     brightness: undefined,
+    //     saturation: undefined,
+    //     iso: undefined,
+    //     evCompensation: undefined,
 
-        // Dropdown options
-        orientation: undefined,
-        exposureMode: undefined,
-        awb: undefined,
-        metering: undefined,
-    };
+    //     // Dropdown options
+    //     orientation: undefined,
+    //     exposureMode: undefined,
+    //     awb: undefined,
+    //     metering: undefined,
+    // };
 
     // Load Settings
     (async ()=>{
