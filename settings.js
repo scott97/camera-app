@@ -33,7 +33,7 @@ function reset() {
 }
 
 
-export let settings = {
+module.exports = {
     load: load,
 
     update: update,

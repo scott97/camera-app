@@ -5,7 +5,7 @@ const imagesRouter = require(root + '/server/routers/images.js')
 const pagesRouter = require(root + '/server/routers/pages.js')
 
 // Exports
-export let server = express()
+module.exports = express()
 
 
 // Routers

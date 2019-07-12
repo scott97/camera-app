@@ -2,8 +2,8 @@
 const root = '/home/pi/Camera-App'
 const PiCamera = require('pi-camera')
 const now = require('moment')
-import {server} from (root + '/server/server.js')
-import {settings} from (root + '/settings.js')
+const server = require(root + '/server/server.js')
+const settings = require(root + '/settings.js')
 
 const Raspi = require('raspi-io');
 const gpio = require('johnny-five');
