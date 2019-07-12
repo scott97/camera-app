@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 function load() {
-    return JSON.parse(fs.readFileSync('settings.json'));
+    return JSON.parse(fs.readFileSync('settings.json')); // Problem?
 }
 
 function update(received) {

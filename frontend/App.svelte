@@ -13,27 +13,31 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
 
     // Data
     let Settings = {
-        capture: false,
-        cameraName: "Wildlife Camera",
+        capture: undefined,
+        cameraName: undefined,
 
         // Sliders
-        sharpness: 10,
-        sharpness: 0,
-        contrast: 0,
-        brightness: 50,
-        saturation: 0,
-        iso: 450,
-        evCompensation: 0,
+        sharpness: undefined,
+        sharpness: undefined,
+        contrast: undefined,
+        brightness: undefined,
+        saturation: undefined,
+        iso: undefined,
+        evCompensation: undefined,
 
         // Dropdown options
-        orientation: "Normal",
-        exposureMode: "Auto",
-        awb: "Off",
-        metering: "Average",
+        orientation: undefined,
+        exposureMode: undefined,
+        awb: undefined,
+        metering: undefined,
     };
 
     // Load Settings
-    // TODO
+    (async ()=>{
+        let response = await fetch('api/settings');
+        Settings = await response.json();
+    })();
+
 
     // Update
     $: {
