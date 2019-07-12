@@ -12,13 +12,15 @@
     import TitleBar from './Fragments/TitleBar.svelte'
     import DownloadPictures from './Fragments/DownloadPictures.svelte'
 
-    // Load Settings
-    let FetchSettings = fetchSettings();
+    import { onMount } from 'svelte';
 
-    async function fetchSettings() {
-        let response = await fetch('api/settings');
-        return await response.json();
-    }
+    // Load Settings
+    let Settings = {};
+	
+	onMount(async () => {
+		const response = await fetch('api/settings');
+		Settings = await response.json();
+	});
 
 
     // Update
@@ -47,9 +49,6 @@
 
 <div class="section">
     <div class="container">
-    {#await FetchSettings }
-        <p id="loading">Loading...</p>
-        {:then Settings}
         <TitleBar title={Settings.cameraName} bind:capture={Settings.capture}/>
         <Tabs>
             <Tab label="Overview" active>
@@ -77,6 +76,5 @@
             </Tab>
 
         </Tabs>
-    {/await}
     </div>
 </div>
