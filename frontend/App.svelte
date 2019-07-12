@@ -24,17 +24,17 @@
 
 
     // Update
-    // $: {
-    //     console.log(Settings);
-    //     fetch('api/settings', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(Settings)
-    //     });
-    // }
+    $: {
+        console.log(Settings);
+        fetch('api/settings', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Settings)
+        });
+    }
 </script>
 
 <style>
