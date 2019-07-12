@@ -1,19 +1,18 @@
 // Requires
 const root = '/home/pi/Camera-App'
-const PiCamera = require('pi-camera')
-const now = require('moment')
-const server = require(root + '/server/server.js')
-const settings = require(root + '/settings.js')
 
+// Server Stuff
+const server = require(root + '/server/server.js')
+const port = 80
+server.listen(port, () => console.log(`Server started on port ${port}.`))  // Start server
+
+
+/*
+// Electronics Stuff
 const Raspi = require('raspi-io');
 const gpio = require('johnny-five');
 const board = new gpio.Board({io: new Raspi()})
 
-// Server Stuff
-const port = 80
-server.listen(port, () => console.log(`Server started on port ${port}.`))  // Start server
-
-// Electronics
 board.on('ready', () => {
 
     // GPIO 17 or wiring pi 0
@@ -43,6 +42,11 @@ board.on('ready', () => {
 
 
 // Camera stuff
+const PiCamera = require('pi-camera')
+const now = require('moment')
+
+const settings = require(root + '/settings.js')
+
 function snap(se, flash) {
     // Get filename
     var date = now().format('YYYY-MM-DD_HH:mm:ss')
