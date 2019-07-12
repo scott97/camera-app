@@ -16,24 +16,32 @@
 
     // Load Settings
     let Settings = {};
+    let ready = false;
 	
 	onMount(async () => {
 		const response = await fetch('api/settings');
-		Settings = await response.json();
+        Settings = await response.json();
+        ready = true;
 	});
 
 
     // Update
     $: {
-        console.log(Settings);
-        fetch('api/settings', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Settings)
-        });
+        // What changes shoud trigger updates
+        Settings; 
+
+        // Updates
+        if (ready){
+            console.log(Settings);
+            fetch('api/settings', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Settings)
+            });
+        }
     }
 </script>
 
