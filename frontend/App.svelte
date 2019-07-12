@@ -2,39 +2,18 @@
     import {
         Switch,
         Tabs,
-        Tab
+        Tab, 
+        Progress
     } from "svelma";
     import Overview from './Fragments/Overview.svelte'
-import CameraSettings from './Fragments/CameraSettings.svelte'
-import SensorSettings from './Fragments/SensorSettings.svelte'
-import AdvancedSettings from './Fragments/AdvancedSettings.svelte'
-import TitleBar from './Fragments/TitleBar.svelte'
-import DownloadPictures from './Fragments/DownloadPictures.svelte'
-
-    // Data
-    //let Settings;
-    //  = {
-    //     capture: undefined,
-    //     cameraName: undefined,
-
-    //     // Sliders
-    //     sharpness: undefined,
-    //     sharpness: undefined,
-    //     contrast: undefined,
-    //     brightness: undefined,
-    //     saturation: undefined,
-    //     iso: undefined,
-    //     evCompensation: undefined,
-
-    //     // Dropdown options
-    //     orientation: undefined,
-    //     exposureMode: undefined,
-    //     awb: undefined,
-    //     metering: undefined,
-    // };
+    import CameraSettings from './Fragments/CameraSettings.svelte'
+    import SensorSettings from './Fragments/SensorSettings.svelte'
+    import AdvancedSettings from './Fragments/AdvancedSettings.svelte'
+    import TitleBar from './Fragments/TitleBar.svelte'
+    import DownloadPictures from './Fragments/DownloadPictures.svelte'
 
     // Load Settings
-    let PromiseSettings = fetchSettings();
+    let FetchSettings = fetchSettings();
 
     async function fetchSettings() {
         let response = await fetch('api/settings');
@@ -62,10 +41,12 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
     }
 </style>
 
-{#await PromiseSettings then Settings}
-	
+
 <div class="section">
     <div class="container">
+    {#await FetchSettings }
+        <Progress max="100" type="is-info"></Progress>
+        {:then Settings}
         <TitleBar title={Settings.cameraName} bind:capture={Settings.capture}/>
         <Tabs>
             <Tab label="Overview" active>
@@ -93,6 +74,6 @@ import DownloadPictures from './Fragments/DownloadPictures.svelte'
             </Tab>
 
         </Tabs>
+    {/await}
     </div>
 </div>
-{/await}
