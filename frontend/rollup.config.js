@@ -4,42 +4,37 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 
-const production = !process.env.ROLLUP_WATCH;
+const dev = process.env.ROLLUP_WATCH;
+const publicdir = '../server/public';
 
 export default {
-	input: 'src/main.js',
+	input: 'main.js',
 	output: {
-		sourcemap: true,
+		//sourcemap: dev,
+		sourcemap: false,
 		format: 'iife',
 		name: 'app',
-		file: 'public/bundle.js'
+		file: publicdir + '/bundle.js'
 	},
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file — better for performance
+			// enable run-time checks when in dev
+			dev: dev,
+			// Compile CSS
 			css: css => {
-				css.write('public/bundle.css');
+				css.write(publicdir + '/bundle.css');
 			}
 		}),
 
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration —
-		// consult the documentation for details:
-		// https://github.com/rollup/rollup-plugin-commonjs
+		// For external dependencies installed from npm
 		resolve(),
 		commonjs(),
 
-		// Watch the `public` directory and refresh the
-		// browser on changes when not in production
-		!production && livereload('public'),
+		// Watch the public directory 
+		dev && livereload(publicdir),
 
-		// If we're building for production (npm run build
-		// instead of npm run dev), minify
-		production && terser()
+		// Minify
+		!dev && terser()
 	],
 	watch: {
 		clearScreen: false
