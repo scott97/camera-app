@@ -4,80 +4,80 @@ const root = '/home/pi/Camera-App'
 // Server Stuff
 const server = require(root + '/server/server.js')
 const port = 80
-server.listen(port, () => console.log(`Server started on port ${port}.`))  // Start server
+server.listen(port, () => console.log(`Server started on port ${port}.`))
 
 
-/*
-// Electronics Stuff
-const Raspi = require('raspi-io');
-const gpio = require('johnny-five');
-const board = new gpio.Board({io: new Raspi()})
 
-board.on('ready', () => {
+// // Electronics Stuff
+// const Raspi = require('raspi-io');
+// const gpio = require('johnny-five');
+// const board = new gpio.Board({io: new Raspi()})
 
-    // GPIO 17 or wiring pi 0
-    var flash = new gpio.Relay({
-        pin: 0,
-        type: 'NC', // Normally open
-    })
+// board.on('ready', () => {
 
-    flash.open()
+//     // GPIO 17 or wiring pi 0
+//     var flash = new gpio.Relay({
+//         pin: 0,
+//         type: 'NC', // Normally open
+//     })
 
-    // GPIO 4 or wiring pi 7
-    var pir = new gpio.Pin({ 
-        pin: 7,
-        type: 'digital',
-        mode: gpio.Pin.INPUT,
-    })    
+//     flash.open()
 
-    pir.on('high', function() {
-        var se = settings.load()
+//     // GPIO 4 or wiring pi 7
+//     var pir = new gpio.Pin({ 
+//         pin: 7,
+//         type: 'digital',
+//         mode: gpio.Pin.INPUT,
+//     })    
 
-        if (se.capture) {
-            console.log( 'Motion detected' )
-            snap(se, flash)
-        }
-    })
-})
+//     pir.on('high', function() {
+//         var se = settings.load()
+
+//         if (se.capture) {
+//             console.log( 'Motion detected' )
+//             snap(se, flash)
+//         }
+//     })
+// })
 
 
-// Camera stuff
-const PiCamera = require('pi-camera')
-const now = require('moment')
+// // Camera stuff
+// const PiCamera = require('pi-camera')
+// const now = require('moment')
 
-const settings = require(root + '/settings.js')
+// const settings = require(root + '/settings.js')
 
-function snap(se, flash) {
-    // Get filename
-    var date = now().format('YYYY-MM-DD_HH:mm:ss')
+// function snap(se, flash) {
+//     // Get filename
+//     var date = now().format('YYYY-MM-DD_HH:mm:ss')
 
-    // Configure Camera
-    const camera = new PiCamera({
-        mode: 'photo',
-        output: `${ __dirname }/images/${date}.jpg`,
-        width: 640,
-        height: 480,
-        nopreview: false,
-        fullscreen: true,
-        vflip: se.cameraOrientation == true,
-        sharpness: se.sharpness,
-        contrast: se.contrast,
-        brightness: se.brightness,
-        saturation: se.saturation,
-        ISO: se.iso,
-        ev: se.evCompensation,
-    })
+//     // Configure Camera
+//     const camera = new PiCamera({
+//         mode: 'photo',
+//         output: `${ __dirname }/images/${date}.jpg`,
+//         width: 640,
+//         height: 480,
+//         nopreview: false,
+//         fullscreen: true,
+//         vflip: se.cameraOrientation == true,
+//         sharpness: se.sharpness,
+//         contrast: se.contrast,
+//         brightness: se.brightness,
+//         saturation: se.saturation,
+//         ISO: se.iso,
+//         ev: se.evCompensation,
+//     })
 
-    // Take Picture
-    flash.close()
-    camera.snap()
-        .then((result) => {
-            console.log('Picture taken')
-            flash.open()
-        })
-        .catch((error) => {
-            console.log('Camera error')
-            flash.open()
-        })
-}
+//     // Take Picture
+//     flash.close()
+//     camera.snap()
+//         .then((result) => {
+//             console.log('Picture taken')
+//             flash.open()
+//         })
+//         .catch((error) => {
+//             console.log('Camera error')
+//             flash.open()
+//         })
+// }
 
