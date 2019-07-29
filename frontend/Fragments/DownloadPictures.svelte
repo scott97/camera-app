@@ -5,7 +5,7 @@
     import { onMount } from 'svelte';
 
     const onDeleteAll = function () {
-        const response = fetch('api/images', {
+        const response = fetch('api/images/all', {
             method: 'DELETE'
         });
     }
