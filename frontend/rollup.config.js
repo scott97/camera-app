@@ -5,12 +5,11 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 
 const dev = process.env.ROLLUP_WATCH;
-const publicdir = '../server/public';
+const publicdir = '../static';
 
 export default {
 	input: 'main.js',
 	output: {
-		//sourcemap: dev,
 		sourcemap: false,
 		format: 'iife',
 		name: 'app',

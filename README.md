@@ -8,3 +8,14 @@ to run program use
 ```
 sudo node app.js
 ```
+
+
+# How to cross compile for zero W
+env GOOS=linux GOARCH=arm GOARM=5 go build
+
+
+# SSH and 
+
+# scp for copying files
+scp -r [from] [to]
+scp -r ./camera-app "pi@192.168.1.106:/home/pi/Camera-App"
