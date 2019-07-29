@@ -1,4 +1,4 @@
-package main
+package wildlifecam
 
 import (
 	"bytes"
@@ -10,7 +10,7 @@ import (
 	"github.com/zenazn/goji"
 )
 
-func startWebServer() {
+func StartWebServer() {
 
 	// Settings
 	// Gets settings.json
@@ -43,7 +43,7 @@ func startWebServer() {
 	})
 	// Deletes all the images
 	goji.Delete("/api/images/all", func(w http.ResponseWriter, r *http.Request) {
-		//w.Write()
+		deleteAllImages("./images")
 	})
 	// Gets a single image
 	goji.Get("/api/images/*", http.StripPrefix("/api/images/", http.FileServer(http.Dir("./images"))))

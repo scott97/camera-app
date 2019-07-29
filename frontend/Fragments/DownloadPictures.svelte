@@ -1,6 +1,22 @@
 <script>
-// Here will load the list of images
+    import {
+        Button
+    } from 'svelma'
+    import { onMount } from 'svelte';
 
+    const onDeleteAll = function () {
+        const response = fetch('api/images', {
+            method: 'DELETE'
+        });
+    }
+
+    let images = [];
+
+    // Here will load the list of images
+    onMount(async () => {
+        const response = await fetch('api/images/list');
+        images = await response.json();
+    });
 </script>
 
 
@@ -9,15 +25,15 @@
 <div class="level">
     <div class="level-left">
         <div class="level-item">
-            <a class="button is-link" href="/images/download-all">Download All</a>
+            <Button type="is-link" tag="a" href="/api/images/all">Download All</Button>
         </div>
         <div class="level-item">
-            <a class="button is-danger" href="/images/delete-all">Delete All</a>
+            <Button type="is-danger" on:click={onDeleteAll}>Delete All</Button>
         </div>
     </div>
 </div>
 
 <div id="grid" class="columns is-multiline">
-  
-  <!-- Foreach loop here -->
+
+    <!-- Foreach loop here -->
 </div>

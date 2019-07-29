@@ -16,8 +16,8 @@
     "build": "rollup -c",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
-    "start": "sirv ../server/public",
-    "start:dev": "sirv ../server/public --dev"
+    "start": "sirv ../static",
+    "start:dev": "sirv ../static --dev"
   },
   "dependencies": {
     "bulma": "^0.7.5",

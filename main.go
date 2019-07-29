@@ -1,7 +1,11 @@
 package main
 
+import (
+	"wildlifecam"
+)
+
 func main() {
-	startWebServer()
+	wildlifecam.StartWebServer()
 
 	// if err := rpio.Open(); err != nil {
 	// 	fmt.Println(err)

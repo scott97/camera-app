@@ -1,4 +1,4 @@
-package main
+package wildlifecam
 
 // A struct to represent the settings of the camera
 type settings struct {
