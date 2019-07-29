@@ -1,12 +1,7 @@
 package main
 
-import (
-
-)
-
 func main() {
-	StartWebServer()
-
+	startWebServer()
 
 	// if err := rpio.Open(); err != nil {
 	// 	fmt.Println(err)

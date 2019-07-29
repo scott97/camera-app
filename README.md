@@ -6,7 +6,7 @@ access using http://192.168.1.107/
 
 to run program use
 ```
-sudo node app.js
+sudo ./camera-app --bind=":80"
 ```
 
 
@@ -18,4 +18,4 @@ env GOOS=linux GOARCH=arm GOARM=5 go build
 
 # scp for copying files
 scp -r [from] [to]
-scp -r ./camera-app "pi@192.168.1.106:/home/pi/Camera-App"
+scp -r ./camera-app "pi@192.168.1.106:/home/pi/camera-app"

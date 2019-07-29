@@ -1,14 +1,1 @@
-{
-    "capture": false,
-    "cameraName": "Wildlife Camera",
-    "sharpness": 0,
-    "contrast": 0,
-    "brightness": 50,
-    "saturation": 0,
-    "iso": 450,
-    "evCompensation": 0,
-    "orientation": "Normal",
-    "exposureMode": "Auto",
-    "awb": "Off",
-    "metering": "Average"
-}
+{"capture":true,"cameraName":"Wildlife Camera","sharpness":0,"contrast":0,"brightness":50,"saturation":0,"iso":450,"evCompensation":0,"orientation":"Normal","exposureMode":"Auto","awb":"Off","metering":"Average"}
